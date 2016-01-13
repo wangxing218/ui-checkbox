@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <title>ui-checkbox</title>
+    <link href="../src/ui-checkbox.css" rel="stylesheet" />
+    <style>
+    .demo-box {
+        margin: 40px auto;
+        width: 600px;
+        padding: 20px;
+    }
+    
+    .demo-table {
+        border-collapse: collapse;
+        width: 100%;
+    }
+    
+    .demo-table caption {
+        border-bottom: 1px dashed #ccc;
+        height: 40px;
+        margin-bottom: 20px;
+        font: 18px/1.2 normal 'microsoft yahei';
+    }
+    
+    .demo-table tr td {
+        padding: 8px 10px;
+        font: 16px/1.8 normal 'microsoft yahei';
+        vertical-align: top;
+    }
+    
+    .ui-input {
+        vertical-align: top;
+        height: 18px;
+        font-size: 16px;
+        line-height: 20px;
+        border: 1px solid #aaa;
+        padding: 6px 8px;
+        border-radius: 3px;
+    }
+    </style>
+</head>
+
+<body>
+    <div class="demo-box">
+        <table class="demo-table">
+            <caption>checkbox 插件演示</caption>
+            <tr>
+                <td style="width:18%;">
+                    <label>标准</label>
+                </td>
+                <td>
+                    <label>
+                        <input class="ui-checkbox" checked="checked" name="hobby" id="ur_01" type="checkbox" value="1"> 爱好一</label>
+                    <label>
+                        <input class="ui-checkbox" checked="checked" name="hobby" type="checkbox" value="2"> 爱好二</label>
+                    <label>
+                        <input class="ui-checkbox" name="hobby" type="checkbox" value="3"> 爱好三</label>
+                    <label>
+                        <input class="ui-checkbox" name="hobby" type="checkbox" value="4"> 爱好四</label>
+                </td>
+                <td>
+                    <span id="info"></span>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <label>禁用</label>
+                </td>
+                <td>
+                    <label>
+                        <input class="ui-checkbox" name="opt" id="ur_02" type="checkbox" value="1"> 设置一</label>
+                    <label>
+                        <input class="ui-checkbox" name="opt" type="checkbox" disabled value="2"> 设置二</label>
+                    <label>
+                        <input class="ui-checkbox" checked name="opt" type="checkbox" value="3"> 设置三</label>
+                    <label>
+                        <input class="ui-checkbox" name="opt" type="checkbox" value="4"> 设置四</label>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <label>API</label>
+                </td>
+                <td>
+                    <button onclick="alert(uc.val())">获取值</button>
+                    <button onclick="uc.val(['2','3'])">设置值</button>
+                    <button onclick="uc.selectAll()">全选</button>
+                    <button onclick="uc.disable(2)">禁用指定元素</button>
+                    <button onclick="uc.enable(2)">启用指定元素</button>
+                </td>
+            </tr>
+        </table>
+    </div>
+</body>
+<script src="http://libs.baidu.com/jquery/1.11.1/jquery.min.js"></script>
+<script src="../src/ui-checkbox.js"></script>
+<script>
+// 实例化所有的checkbox
+$('.ui-checkbox').ui_checkbox();
+
+// 取得已实例的checkbox对象,默认将data值存在checkbox同组（name相同）的第一个元素
+var uc = $('#ur_01').data('ui-checkbox');
+
+// 值改变事件
+uc.change = function(val, item) {
+    $('#info').text(val);
+}
+
+// API
+
+// uc.val()             //获取值
+// uc.val(['2','3'])    //设置值
+// uc.selectAll()       //全选
+// uc.disable(2)        //禁用指定元素（不给参数时禁用所有checkbox）
+// uc.enable(2)         //启用指定元素（不给参数时启用所有checkbox）
+</script>
+
+</html>
