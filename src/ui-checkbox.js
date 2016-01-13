@@ -133,7 +133,8 @@
             }
             // setValue
             value = typeof value == 'object' ? value : [value];
-            value = value.join().split(',');
+            // 如果传入的数组为数字类型将全部转为字符串
+            value = value.join(':::,:').split(':::,:');
             var _oValue = this.val();
             var _nValue = [];
             var _this = this;
@@ -156,6 +157,8 @@
             this.el.each(function(index, el) {
                 var _self = $(this);
                 if (!_self.prop('disabled')) {
+                    _val.push(_self.val());
+                }else if(_self.prop('checked')){
                     _val.push(_self.val());
                 }
             });
